@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background-image: linear-gradient(
+          to right top,
+          #89aebd,
+          #83b6ba,
+          #88bcaf,
+          #98c0a1,
+          #b2c193
+        );
+      }
+
+      .parent {
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: hsla(226, 13%, 38%, 1);
+        position: sticky;
+        top: 2%;
+        background: linear-gradient(
+          90deg,
+          hsla(226, 13%, 38%, 1) 27%,
+          hsla(9, 59%, 7%, 1) 100%
+        );
+
+        background: -moz-linear-gradient(
+          90deg,
+          hsla(226, 13%, 38%, 1) 27%,
+          hsla(9, 59%, 7%, 1) 100%
+        );
+
+        background: -webkit-linear-gradient(
+          90deg,
+          hsla(226, 13%, 38%, 1) 27%,
+          hsla(9, 59%, 7%, 1) 100%
+        );
+        padding: 1.5rem;
+        width: 90%;
+        margin: 2% auto;
+        border-radius: 2rem;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .list > ul {
+        display: flex;
+        gap: 2rem;
+      }
+      h1 {
+        color: chartreuse;
+      }
+
+      ul > li {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-size: medium;
+        font-weight: 700;
+        color: white;
+
+        padding: 1rem;
+      }
+
+      .list > ul > li:hover {
+        background-color: black;
+        color: white;
+        transition: 0.3s;
+        border-radius: 1rem;
+      }
+
+      .hamburger {
+        width: 30px;
+        height: 30px;
+        display: none;
+        cursor: pointer;
+      }
+
+      .hamburger > div {
+        width: 100%;
+        height: 5px;
+        background-color: rgb(25, 210, 158);
+        margin: 5px 0;
+        border-radius: 1rem;
+        transition: 0.3s;
+      }
+
+      .hamburger.active div:nth-child(1) {
+        transform: rotate(-45deg) translate(-7px, 6px);
+      }
+
+      .hamburger.active div:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active div:nth-child(3) {
+        transform: rotate(45deg) translate(-6px, -6px);
+      }
+
+      .hero-section {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+      }
+      .content > h1 {
+        color: black;
+        line-height: 4rem;
+        margin-bottom: 1.4rem;
+        font-size: 3rem;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+      }
+      .content > p {
+        color: black;
+        font-size: 2rem;
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        margin-bottom: 1rem;
+      }
+      button {
+        padding: 1rem;
+        border: none;
+        border-radius: 75%/10%;
+
+        background-color: black;
+        color: white;
+        font-size: large;
+        font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+      }
+
+      button:hover {
+        background-color: white;
+        color: black;
+        transition: 0.4s ease-in;
+        border-radius: 2rem;
+      }
+
+      .ag-format-container {
+        width: 1142px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+
+      .ag-courses_box {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+
+        padding: 50px 0;
+      }
+      .ag-courses_item {
+        -ms-flex-preferred-size: calc(33.33333% - 30px);
+        flex-basis: calc(33.33333% - 30px);
+
+        margin: 0 15px 30px;
+
+        overflow: hidden;
+
+        border-radius: 28px;
+      }
+      .ag-courses-item_link {
+        display: block;
+        padding: 30px 20px;
+        background-color: #121212;
+
+        overflow: hidden;
+
+        position: relative;
+      }
+      .ag-courses-item_link:hover,
+      .ag-courses-item_link:hover .ag-courses-item_date {
+        text-decoration: none;
+        color: #fff;
+      }
+      .ag-courses-item_link:hover .ag-courses-item_bg {
+        -webkit-transform: scale(10);
+        -ms-transform: scale(10);
+        transform: scale(10);
+      }
+      .ag-courses-item_title {
+        min-height: 87px;
+        margin: 0 0 25px;
+
+        overflow: hidden;
+
+        font-weight: bold;
+        font-size: 30px;
+        color: #fff;
+
+        z-index: 2;
+        position: relative;
+      }
+      .ag-courses-item_date-box {
+        font-size: 18px;
+        color: #fff;
+
+        z-index: 2;
+        position: relative;
+      }
+      .ag-courses-item_date {
+        font-weight: bold;
+        color: #f9b234;
+
+        -webkit-transition: color 0.5s ease;
+        -o-transition: color 0.5s ease;
+        transition: color 0.5s ease;
+      }
+      .ag-courses-item_bg {
+        height: 128px;
+        width: 128px;
+        background-color: #f9b234;
+
+        z-index: 1;
+        position: absolute;
+        top: -75px;
+        right: -75px;
+
+        border-radius: 50%;
+
+        -webkit-transition: all 0.5s ease;
+        -o-transition: all 0.5s ease;
+        transition: all 0.5s ease;
+      }
+      .ag-courses_item:nth-child(2n) .ag-courses-item_bg {
+        background-color: #3ecd5e;
+      }
+      .ag-courses_item:nth-child(3n) .ag-courses-item_bg {
+        background-color: #e44002;
+      }
+      .ag-courses_item:nth-child(4n) .ag-courses-item_bg {
+        background-color: #952aff;
+      }
+      .ag-courses_item:nth-child(5n) .ag-courses-item_bg {
+        background-color: #cd3e94;
+      }
+      .ag-courses_item:nth-child(6n) .ag-courses-item_bg {
+        background-color: #4c49ea;
+      }
+
+      @media only screen and (max-width: 979px) {
+        .ag-courses_item {
+          -ms-flex-preferred-size: calc(50% - 30px);
+          flex-basis: calc(50% - 30px);
+        }
+        .ag-courses-item_title {
+          font-size: 24px;
+        }
+      }
+
+      @media screen and (max-width: 576px) {
+        .hamburger {
+          display: block;
+        }
+
+        .list > ul {
+          position: fixed;
+          top: 0px;
+          left: 100%;
+          background: linear-gradient(
+            90deg,
+            hsla(226, 13%, 38%, 1) 27%,
+            hsla(9, 59%, 7%, 1) 100%
+          );
+
+          background: -moz-linear-gradient(
+            90deg,
+            hsla(226, 13%, 38%, 1) 27%,
+            hsla(9, 59%, 7%, 1) 100%
+          );
+
+          background: -webkit-linear-gradient(
+            90deg,
+            hsla(226, 13%, 38%, 1) 27%,
+            hsla(9, 59%, 7%, 1) 100%
+          );
+          width: 100%;
+          height: 100vh;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          transition: left 0.5s ease;
+        }
+
+        .list.active > ul {
+          left: 0;
+        }
+
+        .parent {
+          width: 100%;
+          justify-content: space-between;
+          border-radius: 0px;
+          margin: 0 auto;
+          position: sticky;
+          top: 0;
+        }
+
+        .list > ul > li:hover {
+          background-color: black;
+          color: white;
+          transition: 0.3s;
+          border-radius: 1rem;
+        }
+        .hero-section {
+          display: flex;
+          flex-direction: column-reverse;
+        }
+        .content {
+          width: 80%;
+          margin: 0 auto;
+          line-break: auto;
+        }
+
+
+        .ag-courses_item {
+    width: 100%;
+  
+   
+  }.ag-format-container {
+    width: 100%;
+   display: flex;
+   flex-direction: column-reverse;
+  }
+
+  .ag-courses-item_title {
+    min-height: 72px;
+    line-height: 1;
+
+    font-size: 24px;
+  }
+  .ag-courses-item_link {
+    padding: 22px 40px;
+  }
+  .ag-courses-item_date-box {
+    font-size: 16px;
+  }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="parent">
+      <div class="logo">
+        <img src="icons8-medical-id-64.png" alt="" />
+        <h1>MediSys</h1>
+      </div>
+
+      <div class="list">
+        <ul>
+          <li>Home</li>
+          <li>About</li>
+          <li>Contact</li>
+          <li>Info</li>
+        </ul>
+      </div>
+
+      <div class="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+
+    <script>
+      const ham = document.querySelector(".hamburger");
+      const list = document.querySelector(".list");
+
+      ham.addEventListener("click", function () {
+        ham.classList.toggle("active");
+        list.classList.toggle("active");
+      });
+    </script>
+
+    <!--hero section-->
+    <div class="hero-section">
+      <div class="content">
+        <h1>
+          Information about general check-ups and <br />routine care services
+          provided.
+        </h1>
+        <p>Information on well-baby check-ups and vaccinations.</p>
+        <button>Explore More</button>
+      </div>
+
+      <div class="hero-img">
+        <img src="Open Peeps - Standing.png" alt="" />
+      </div>
+    </div>
+
+    <!-- card section-->
+    <div class="ag-format-container">
+      <div class="ag-courses_box">
+        <div class="ag-courses_item">
+          <a href="#" class="ag-courses-item_link">
+            <div class="ag-courses-item_bg"></div>
+
+            <div class="ag-courses-item_title">Primary Care Services:</div>
+
+            <div class="ag-courses-item_date-box">
+              <span class="ag-courses-item_date">
+                The importance of regular health check-ups for preventive
+                care.</span
+              >
+            </div>
+          </a>
+        </div>
+
+        <div class="ag-courses_item">
+          <a href="#" class="ag-courses-item_link">
+            <div class="ag-courses-item_bg"></div>
+
+            <div class="ag-courses-item_title">Specialty Services:</div>
+
+            <div class="ag-courses-item_date-box">
+              <span class="ag-courses-item_date">
+                Details about the expertise and qualifications of the
+                specialists.
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <div class="ag-courses_item">
+          <a href="#" class="ag-courses-item_link">
+            <div class="ag-courses-item_bg"></div>
+
+            <div class="ag-courses-item_title">Emergency Services:</div>
+
+            <div class="ag-courses-item_date-box">
+              <span class="ag-courses-item_date">
+                Information on the hospital's emergency department, including
+                hours of operation.
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <div class="ag-courses_item">
+          <a href="#" class="ag-courses-item_link">
+            <div class="ag-courses-item_bg"></div>
+
+            <div class="ag-courses-item_title">Surgical Services:</div>
+
+            <div class="ag-courses-item_date-box">
+              <span class="ag-courses-item_date">
+                Information on pre-operative and post-operative care.
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <div class="ag-courses_item">
+          <a href="#" class="ag-courses-item_link">
+            <div class="ag-courses-item_bg"></div>
+
+            <div class="ag-courses-item_title">Telemedicine Services:</div>
+
+            <div class="ag-courses-item_date-box">
+              <span class="ag-courses-item_date"
+                >Information about physical therapy, occupational therapy, and
+                other rehab services.</span
+              >
+            </div>
+          </a>
+        </div>
+
+        <div class="ag-courses_item">
+          <a href="#" class="ag-courses-item_link">
+            <div class="ag-courses-item_bg"></div>
+
+            <div class="ag-courses-item_title">Maternity and Pediatrics:</div>
+
+            <div class="ag-courses-item_date-box">
+              <span class="ag-courses-item_date"
+                >Information about physical therapy, occupational therapy, and
+                other rehab services.</span
+              >
+            </div>
+          </a>
+        </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
